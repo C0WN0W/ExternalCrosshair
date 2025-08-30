@@ -99,10 +99,12 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <WarningLevel>Level3</WarningLevel>
+      <WarningLevel>TurnOffAllWarnings</WarningLevel>
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp20</LanguageStandard>
+      <LanguageStandard_C>stdc17</LanguageStandard_C>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -111,12 +113,14 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
-      <WarningLevel>Level3</WarningLevel>
+      <WarningLevel>TurnOffAllWarnings</WarningLevel>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp20</LanguageStandard>
+      <LanguageStandard_C>stdc17</LanguageStandard_C>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -124,6 +128,34 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="ExternalCrosshair\Configs.hpp" />
+    <ClInclude Include="ExternalCrosshair\Crosshair.hpp" />
+    <ClInclude Include="ExternalCrosshair\OS-ImGui\imgui\imconfig.h" />
+    <ClInclude Include="ExternalCrosshair\OS-ImGui\imgui\imgui.h" />
+    <ClInclude Include="ExternalCrosshair\OS-ImGui\imgui\imgui_impl_dx11.h" />
+    <ClInclude Include="ExternalCrosshair\OS-ImGui\imgui\imgui_impl_win32.h" />
+    <ClInclude Include="ExternalCrosshair\OS-ImGui\imgui\imgui_internal.h" />
+    <ClInclude Include="ExternalCrosshair\OS-ImGui\imgui\imstb_rectpack.h" />
+    <ClInclude Include="ExternalCrosshair\OS-ImGui\imgui\imstb_textedit.h" />
+    <ClInclude Include="ExternalCrosshair\OS-ImGui\imgui\imstb_truetype.h" />
+    <ClInclude Include="ExternalCrosshair\OS-ImGui\OS-ImGui.h" />
+    <ClInclude Include="ExternalCrosshair\OS-ImGui\OS-ImGui_Base.h" />
+    <ClInclude Include="ExternalCrosshair\OS-ImGui\OS-ImGui_Exception.hpp" />
+    <ClInclude Include="ExternalCrosshair\OS-ImGui\OS-ImGui_External.h" />
+    <ClInclude Include="ExternalCrosshair\OS-ImGui\OS-ImGui_Struct.h" />
+    <ClInclude Include="ExternalCrosshair\Render.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="ExternalCrosshair\OS-ImGui\imgui\imgui.cpp" />
+    <ClCompile Include="ExternalCrosshair\OS-ImGui\imgui\imgui_demo.cpp" />
+    <ClCompile Include="ExternalCrosshair\OS-ImGui\imgui\imgui_draw.cpp" />
+    <ClCompile Include="ExternalCrosshair\OS-ImGui\imgui\imgui_impl_dx11.cpp" />
+    <ClCompile Include="ExternalCrosshair\OS-ImGui\imgui\imgui_impl_win32.cpp" />
+    <ClCompile Include="ExternalCrosshair\OS-ImGui\imgui\imgui_tables.cpp" />
+    <ClCompile Include="ExternalCrosshair\OS-ImGui\imgui\imgui_widgets.cpp" />
+    <ClCompile Include="ExternalCrosshair\OS-ImGui\OS-ImGui.cpp" />
+    <ClCompile Include="ExternalCrosshair\OS-ImGui\OS-ImGui_Base.cpp" />
+    <ClCompile Include="ExternalCrosshair\OS-ImGui\OS-ImGui_External.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
