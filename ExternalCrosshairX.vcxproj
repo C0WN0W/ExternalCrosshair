@@ -146,6 +146,7 @@
     <ClInclude Include="ExternalCrosshair\Render.hpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="ExternalCrosshair\Crosshair.cpp" />
     <ClCompile Include="ExternalCrosshair\OS-ImGui\imgui\imgui.cpp" />
     <ClCompile Include="ExternalCrosshair\OS-ImGui\imgui\imgui_demo.cpp" />
     <ClCompile Include="ExternalCrosshair\OS-ImGui\imgui\imgui_draw.cpp" />

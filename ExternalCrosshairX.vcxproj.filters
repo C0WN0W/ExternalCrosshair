@@ -95,5 +95,8 @@
     <ClCompile Include="ExternalCrosshair\OS-ImGui\OS-ImGui_External.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="ExternalCrosshair\Crosshair.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
