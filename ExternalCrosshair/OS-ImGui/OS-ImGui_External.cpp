@@ -1,5 +1,5 @@
 #include "OS-ImGui_External.h"
-#include "../MenuConfig.hpp"
+#include "../Configs.hpp"
 
 /****************************************************
 * Copyright (C)	: Liv
@@ -170,7 +170,7 @@ namespace OSImGui
                     break;
             }
 
-            if (MenuConfig::BypassOBS)
+            if (MenuConfig::bypassOBS)
                 SetWindowDisplayAffinity(Window.hWnd, WDA_EXCLUDEFROMCAPTURE);
             else
                 SetWindowDisplayAffinity(Window.hWnd, WDA_NONE);
