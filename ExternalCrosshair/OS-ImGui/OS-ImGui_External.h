@@ -12,6 +12,8 @@
 
 namespace OSImGui
 {
+#ifndef OSIMGUI_INTERNAL
+
 	class OSImGui_External : public OSImGui_Base
 	{
 	private:
@@ -19,7 +21,7 @@ namespace OSImGui
 		WindowType Type = NEW;
 	public:
 		// 创建一个新窗口
-		void NewWindow(std::string WindowName, Vec2 WindowSize, std::function<void()> CallBack);
+		void NewWindow(std::string WindowName, Vec2 WindowSize, std::function<void()> CallBack, bool Transparent = false);
 		// 附加到另一个窗口上
 		void AttachAnotherWindow(std::string DestWindowName, std::string DestWindowClassName, std::function<void()> CallBack);
 	private:
@@ -28,4 +30,6 @@ namespace OSImGui
 		bool CreateMyWindow();
 		bool PeekEndMessage();
 	};
+
+#endif
 }

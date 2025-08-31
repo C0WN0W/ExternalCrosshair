@@ -55,6 +55,7 @@ namespace OSImGui
 		Vec2 Pos;
 		Vec2 Size;
 		ImColor BgColor{ 255, 255, 255 };
+		bool Transparent = false;
 	};
 
 	class OSImGui_Base
@@ -71,7 +72,7 @@ namespace OSImGui
 		WindowData DestWindow;
 	public:
 		// 创建一个新窗口
-		virtual void NewWindow(std::string WindowName, Vec2 WindowSize, std::function<void()> CallBack) = 0;
+		virtual void NewWindow(std::string WindowName, Vec2 WindowSize, std::function<void()> CallBack) {};
 		// 退出
 		virtual void Quit() { EndFlag = true; };
 	public:

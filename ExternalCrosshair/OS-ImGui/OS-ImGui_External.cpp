@@ -76,7 +76,7 @@ namespace OSImGui
 
     LRESULT WINAPI WndProc_External(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
 
-    void OSImGui_External::NewWindow(std::string WindowName, Vec2 WindowSize, std::function<void()> CallBack)
+    void OSImGui_External::NewWindow(std::string WindowName, Vec2 WindowSize, std::function<void()> CallBack, bool Transparent)
     {
         if (!CallBack)
             throw OSException("CallBack is empty");
@@ -87,8 +87,11 @@ namespace OSImGui
         Window.wName = StringToWstring(Window.Name);
         Window.ClassName = "WindowClass";
         Window.wClassName = StringToWstring(Window.ClassName);
-        Window.BgColor = ImColor(0, 0, 0, 255);
         Window.Size = WindowSize;
+        Window.Transparent = Transparent;
+
+        if(Window.Transparent)
+            Window.BgColor = ImColor(0, 0, 0, 0);
 
         Type = NEW;
         CallBackFn = CallBack;
@@ -170,6 +173,13 @@ namespace OSImGui
                     break;
             }
 
+            if (ImGui::IsWindowHovered(ImGuiHoveredFlags_AnyWindow) || ImGui::IsWindowFocused(ImGuiFocusedFlags_AnyWindow)) {
+                SetWindowLong(Window.hWnd, GWL_EXSTYLE, WS_EX_LAYERED);
+            }
+            else {
+                SetWindowLong(Window.hWnd, GWL_EXSTYLE, WS_EX_LAYERED | WS_EX_TRANSPARENT);
+            }
+
             if (MenuConfig::bypassOBS)
                 SetWindowDisplayAffinity(Window.hWnd, WDA_EXCLUDEFROMCAPTURE);
             else
@@ -199,13 +209,18 @@ namespace OSImGui
         if (Type == ATTACH)
         {
             Window.hWnd = CreateWindowExW(WS_EX_TOPMOST | WS_EX_TRANSPARENT | WS_EX_TOOLWINDOW, Window.wClassName.c_str(), Window.wName.c_str(), WS_POPUP, CW_USEDEFAULT, CW_USEDEFAULT, 100, 100, NULL, NULL, GetModuleHandle(NULL), NULL);
-            SetLayeredWindowAttributes(Window.hWnd, 0, 255, LWA_ALPHA);
         }
         else
         {
-            Window.hWnd = CreateWindowW(Window.wClassName.c_str(), Window.wName.c_str(),WS_OVERLAPPED | WS_MINIMIZEBOX | WS_SYSMENU, (int)Window.Pos.x, (int)Window.Pos.y, (int)Window.Size.x, (int)Window.Size.y, NULL, NULL, wc.hInstance, NULL);
-            SetLayeredWindowAttributes(Window.hWnd, 0, 255, LWA_ALPHA);
+            if (Window.Transparent)
+                Window.hWnd = CreateWindowExW(WS_EX_TOPMOST | WS_EX_TRANSPARENT, Window.wClassName.c_str(), Window.wName.c_str(), WS_POPUP, (int)Window.Pos.x, (int)Window.Pos.y, (int)Window.Size.x, (int)Window.Size.y, NULL, NULL, wc.hInstance, NULL);
+            else
+                Window.hWnd = CreateWindowW(Window.wClassName.c_str(), Window.wName.c_str(),WS_OVERLAPPED | WS_MINIMIZEBOX | WS_SYSMENU, (int)Window.Pos.x, (int)Window.Pos.y, (int)Window.Size.x, (int)Window.Size.y, NULL, NULL, wc.hInstance, NULL);
         }
+
+        if (Window.Transparent)
+            SetLayeredWindowAttributes(Window.hWnd, 0, 255, LWA_ALPHA);
+
         Window.hInstance = wc.hInstance;
 
         if (!g_Device.CreateDeviceD3D(Window.hWnd))
