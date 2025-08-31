@@ -12,9 +12,9 @@ void Crosshair::Menu()
 		ImGui::BeginTabBar("TabBar", ImGuiTabBarFlags_Reorderable | ImGuiTabBarFlags_FittingPolicyScroll | ImGuiTabBarFlags_NoTooltip);
 		
 		//Crosshair
-		if (ImGui::BeginTabItem("Crosshair"))
+		if (ImGui::BeginTabItem("CS风格准星"))
 		{
-			ImGui::Checkbox("Enabled", &chcfg::Show);
+			ImGui::Checkbox("启用", &chcfg::Show);
 		}
 
 	}ImGui::End();
