@@ -1,4 +1,4 @@
-#include <string>
+﻿#include <string>
 #include "Crosshair.hpp"
 #include "Render.hpp"
 #include "Configs.hpp"
@@ -6,7 +6,7 @@
 void Crosshair::Menu()
 {
 	ImGui::SetNextWindowSize(ImVec2(400, 450));
-	ImGui::Begin("External Crosshair Tool", nullptr, ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoResize);
+	ImGui::Begin("准星工具", nullptr, ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoResize);
 
 	{
 		ImGui::BeginTabBar("TabBar", ImGuiTabBarFlags_Reorderable | ImGuiTabBarFlags_FittingPolicyScroll | ImGuiTabBarFlags_NoTooltip);

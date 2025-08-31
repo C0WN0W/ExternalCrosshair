@@ -6,8 +6,8 @@
 
 int main()
 {
+	std::locale::global(std::locale("en_HK.UTF-8"));
 	SetConsoleTitle(L"External Crosshair Tool");
-	Sleep(100);
 
 	std::printf(
 		"External Crosshair Tool\n"

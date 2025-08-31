@@ -101,5 +101,8 @@
     <ClCompile Include="ExternalCrosshair\main.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="ExternalCrosshair\OS-ImGui\Font.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

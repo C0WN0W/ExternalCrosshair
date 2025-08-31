@@ -1,4 +1,5 @@
 #include "OS-ImGui_Base.h"
+#include "Font.c"
 
 /****************************************************
 * Copyright (C)	: Liv
@@ -16,9 +17,10 @@ namespace OSImGui
         ImGui::CreateContext();
         ImGuiIO& io = ImGui::GetIO(); (void)io;
 
-        ImGui::StyleColorsClassic();
+        ImGui::StyleColorsLight();
         
-        io.Fonts -> AddFontFromFileTTF("c:\\Windows\\Fonts\\msyhbd.ttc", 16.0f, NULL, io.Fonts->GetGlyphRangesChineseFull());
+        // io.Fonts -> AddFontFromFileTTF("c:\\Windows\\Fonts\\msyhbd.ttc", 16.0f, NULL, io.Fonts->GetGlyphRangesChineseFull());
+        io.Fonts->AddFontFromMemoryTTF(fonto, sizeof(fonto), 25.0f, NULL, io.Fonts->GetGlyphRangesChineseFull());
         io.LogFilename = nullptr;
 
         if (!ImGui_ImplWin32_Init(Window.hWnd))
