@@ -13,7 +13,7 @@ int main()
 		"External Crosshair Tool\n"
 		"Source Code: https://github.com/C0WN0W/ExternalCrosshair\n"
 		"\n"
-		"- Press [INS] to show or hide Menu.\n"
+		"- Press [DEL] to show or hide Menu.\n"
 		"\n"
 	);
 
