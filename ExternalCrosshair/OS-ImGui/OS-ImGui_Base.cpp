@@ -19,8 +19,12 @@ namespace OSImGui
 
         ImGui::StyleColorsLight();
         
-        // io.Fonts -> AddFontFromFileTTF("c:\\Windows\\Fonts\\msyhbd.ttc", 16.0f, NULL, io.Fonts->GetGlyphRangesChineseFull());
-        io.Fonts->AddFontFromMemoryTTF(fonto, sizeof(fonto), 25.0f, NULL, io.Fonts->GetGlyphRangesChineseFull());
+        ImFontConfig font_cfg;
+        font_cfg.OversampleH = 3;
+        font_cfg.OversampleV = 3;
+        float dpiScale = ImGui_ImplWin32_GetDpiScaleForHwnd(Window.hWnd);
+
+        io.Fonts->AddFontFromMemoryTTF(fonto, sizeof(fonto), 18.0f * dpiScale, &font_cfg, io.Fonts->GetGlyphRangesChineseFull());
         io.LogFilename = nullptr;
 
         if (!ImGui_ImplWin32_Init(Window.hWnd))
