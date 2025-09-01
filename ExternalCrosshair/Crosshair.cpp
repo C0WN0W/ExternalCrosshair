@@ -45,6 +45,9 @@ void Crosshair::Menu()
 				{
 					ImGui::SliderFloat("圆环半径", &chcfg::CircleRads, 0.f, 50.f, "%.1f");
 				}
+
+				ImGui::Separator();
+				ImGui::Checkbox("反截图", &MenuConfig::bypassOBS);
 			}
 		
 		}

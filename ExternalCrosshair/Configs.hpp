@@ -4,7 +4,7 @@
 namespace MenuConfig
 {
 	inline bool showMenu = true;
-	inline bool bypassOBS = true;
+	inline bool bypassOBS = false;
 }
 
 namespace chcfg
