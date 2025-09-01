@@ -15,6 +15,34 @@ void Crosshair::Menu()
 		if (ImGui::BeginTabItem("CS风格准星"))
 		{
 			ImGui::Checkbox("启用", &chcfg::Show);
+			if (chcfg::Show)
+			{
+				ImGui::Text("准星颜色");
+				ImGui::SameLine();
+				ImGui::ColorEdit4("##CrosshairColor", reinterpret_cast<float*>(&chcfg::DefaultColor), ImGuiColorEditFlags_NoInputs);
+			
+				ImGui::Checkbox("轮廓", &chcfg::Outline);
+				ImGui::Checkbox("中心点", &chcfg::Dot);
+				if (chcfg::Dot)
+				{
+					ImGui::SliderFloat("中心点大小", &chcfg::DotSize, 1.f, 50.f, "%.f");
+				}
+				ImGui::Checkbox("十字线", &chcfg::Crossline);
+				if (chcfg::Crossline)
+				{
+					ImGui::SliderInt("水平长度", &chcfg::hLength, 1, 100, "%d");
+					ImGui::SliderInt("垂直长度", &chcfg::vLength, 1, 100, "%d");
+					ImGui::SliderInt("间隔", &chcfg::Gap, 1, 50, "%d");
+					ImGui::Checkbox("T形准星", &chcfg::tStyle);
+				}
+
+				ImGui::Checkbox("圆环准星", &chcfg::Circle);
+				if (chcfg::Circle)
+				{
+					ImGui::SliderFloat("圆环半径", &chcfg::CircleRads, 0.f, 50.f, "%.1f");
+				}
+			}
+		
 		}
 
 	}ImGui::End();
