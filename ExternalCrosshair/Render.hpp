@@ -18,8 +18,8 @@ namespace Render
 
 		int outlineGap = gap - 1;
 
-		ImVec2 offset1{ chcfg::DotSize,chcfg::DotSize };
-		ImVec2 offset2{ chcfg::DotSize + 1,chcfg::DotSize + 1 };
+		ImVec2 offset1{ 1.f,1.f };
+		ImVec2 offset2{ 2.f,2.f };
 
 		/*
 		===== Outline =====
@@ -29,28 +29,25 @@ namespace Render
 			//dot
 			if (chcfg::Dot)
 			{	
-				if (chcfg::DotB)
-					drawList->AddCircleFilled(ImVec2(pos.x, pos.y), chcfg::DotRads + 1, color & IM_COL32_A_MASK);
-				else
-					drawList->AddRectFilled(ImVec2(pos.x - offset1.x, pos.y - offset1.y), ImVec2(pos.x + offset2.x, pos.y + offset2.y), color & IM_COL32_A_MASK);
+				drawList->AddCircleFilled(ImVec2(pos.x, pos.y), chcfg::DotRads + 1, color & IM_COL32_A_MASK);
 			}
 
 			if (chcfg::Crossline)
 			{
 				//left
-				drawList->AddRectFilled(ImVec2(pos.x - (outlineGap + BorderWidth + chcfg::hLength), pos.y - 1), ImVec2(pos.x - outlineGap, pos.y + 2), color & IM_COL32_A_MASK);
+				drawList->AddRectFilled(ImVec2(pos.x - (outlineGap + BorderWidth + chcfg::hLength), pos.y - 1 - chcfg::Thickness / 2), ImVec2(pos.x - outlineGap, pos.y + 2 + chcfg::Thickness / 2), color & IM_COL32_A_MASK);
 				//right
-				drawList->AddRectFilled(ImVec2(pos.x + (outlineGap + DotSize), pos.y - 1), ImVec2(pos.x + (outlineGap + DotSize + BorderWidth + chcfg::hLength), pos.y + 2), color & IM_COL32_A_MASK);
+				drawList->AddRectFilled(ImVec2(pos.x + (outlineGap + DotSize), pos.y - 1 - chcfg::Thickness / 2), ImVec2(pos.x + (outlineGap + DotSize + BorderWidth + chcfg::hLength), pos.y + 2 + chcfg::Thickness / 2), color & IM_COL32_A_MASK);
 				//top
 				if (!chcfg::tStyle)
-					drawList->AddRectFilled(ImVec2(pos.x - 1, pos.y - (outlineGap + BorderWidth + chcfg::vLength)), ImVec2(pos.x + 2, pos.y - outlineGap), color & IM_COL32_A_MASK);
+					drawList->AddRectFilled(ImVec2(pos.x - 1 - chcfg::Thickness / 2, pos.y - (outlineGap + BorderWidth + chcfg::vLength)), ImVec2(pos.x + 2 + chcfg::Thickness / 2, pos.y - outlineGap), color & IM_COL32_A_MASK);
 				//bottom
-				drawList->AddRectFilled(ImVec2(pos.x - 1, pos.y + outlineGap + DotSize), ImVec2(pos.x + 2, pos.y + (outlineGap + DotSize + BorderWidth + chcfg::vLength)), color & IM_COL32_A_MASK);
+				drawList->AddRectFilled(ImVec2(pos.x - 1 - chcfg::Thickness / 2, pos.y + outlineGap + DotSize), ImVec2(pos.x + 2 + chcfg::Thickness / 2, pos.y + (outlineGap + DotSize + BorderWidth + chcfg::vLength)), color & IM_COL32_A_MASK);
 			}
 
 			//circle
 			if (chcfg::Circle)
-				drawList->AddCircle(ImVec2(pos.x, pos.y), chcfg::CircleRads, color & IM_COL32_A_MASK, 0, 3.0f);
+				drawList->AddCircle(ImVec2(pos.x, pos.y), chcfg::CircleRads, color & IM_COL32_A_MASK, 0, chcfg::CircleThickness + 2.0f);
 		}
 
 		/*
@@ -59,30 +56,26 @@ namespace Render
 		// dot
 		if (chcfg::Dot)
 		{
-			if (chcfg::DotB)
-				drawList->AddCircleFilled(ImVec2(pos.x, pos.y), chcfg::DotRads, chcfg::DefaultColor);
-			else
-				drawList->AddRectFilled(ImVec2(pos.x - offset1.x + DotSize, pos.y - offset1.y + DotSize), ImVec2(pos.x + offset1.x, pos.y + offset1.y), color);
-
+			drawList->AddCircleFilled(ImVec2(pos.x, pos.y), chcfg::DotRads, chcfg::DefaultColor);
 		}
 
 		// Crossline
 		if (chcfg::Crossline)
 		{
 			// left
-			drawList->AddRectFilled(ImVec2(pos.x - (gap + chcfg::hLength), pos.y), ImVec2(pos.x - gap, pos.y + 1), color);
+			drawList->AddRectFilled(ImVec2(pos.x - (gap + chcfg::hLength), pos.y - chcfg::Thickness / 2), ImVec2(pos.x - gap, pos.y + 1 + chcfg::Thickness / 2), color);
 			// right
-			drawList->AddRectFilled(ImVec2(pos.x + gap + DotSize, pos.y), ImVec2(pos.x + (gap + DotSize + chcfg::hLength), pos.y + 1), color);
+			drawList->AddRectFilled(ImVec2(pos.x + gap + DotSize, pos.y - chcfg::Thickness / 2), ImVec2(pos.x + (gap + DotSize + chcfg::hLength), pos.y + 1 + chcfg::Thickness / 2), color);
 			// top
 			if (!chcfg::tStyle)
-				drawList->AddRectFilled(ImVec2(pos.x, pos.y - (gap + chcfg::vLength)), ImVec2(pos.x + 1, pos.y - gap), color);
+				drawList->AddRectFilled(ImVec2(pos.x - chcfg::Thickness / 2, pos.y - (gap + chcfg::vLength)), ImVec2(pos.x + 1 + chcfg::Thickness / 2, pos.y - gap), color);
 			// bottom
-			drawList->AddRectFilled(ImVec2(pos.x, pos.y + gap + DotSize), ImVec2(pos.x + 1, pos.y + (gap + DotSize + chcfg::vLength)), color);
+			drawList->AddRectFilled(ImVec2(pos.x - chcfg::Thickness / 2, pos.y + gap + DotSize), ImVec2(pos.x + 1 + chcfg::Thickness / 2, pos.y + (gap + DotSize + chcfg::vLength)), color);
 		}
 
 		// circle
 		if (chcfg::Circle)
-			drawList->AddCircle(ImVec2(pos.x, pos.y), chcfg::CircleRads, color, 0, 1.0f);
+			drawList->AddCircle(ImVec2(pos.x, pos.y), chcfg::CircleRads, color, 0, chcfg::CircleThickness);
 	}
 
 	// Update window style color

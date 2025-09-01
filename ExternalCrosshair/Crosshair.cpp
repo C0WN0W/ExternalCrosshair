@@ -5,14 +5,14 @@
 
 void Crosshair::Menu()
 {
-	ImGui::SetNextWindowSize(ImVec2(400, 450));
+	ImGui::SetNextWindowSize(ImVec2(400, 520));
 	ImGui::Begin("准星工具", nullptr, ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoResize);
 
 	{
 		ImGui::BeginTabBar("TabBar", ImGuiTabBarFlags_Reorderable | ImGuiTabBarFlags_FittingPolicyScroll | ImGuiTabBarFlags_NoTooltip);
 		
 		//Crosshair
-		if (ImGui::BeginTabItem("CS风格准星"))
+		if (ImGui::BeginTabItem("准星设置"))
 		{
 			ImGui::Checkbox("启用", &chcfg::Show);
 			if (chcfg::Show)
@@ -25,15 +25,12 @@ void Crosshair::Menu()
 				ImGui::Checkbox("中心点", &chcfg::Dot);
 				if (chcfg::Dot)
 				{
-					ImGui::Checkbox("圆点模式", &chcfg::DotB);
-					if (chcfg::DotB)
-						ImGui::SliderFloat("中心点半径", &chcfg::DotRads, 1.f, 20.f, "%.f");
-					else
-						ImGui::SliderFloat("中心点大小", &chcfg::DotSize, 1.f, 50.f, "%.f");
+					ImGui::SliderFloat("中心点半径", &chcfg::DotRads, 1.f, 20.f, "%.f");
 				}
 				ImGui::Checkbox("十字线", &chcfg::Crossline);
 				if (chcfg::Crossline)
 				{
+					ImGui::SliderInt("粗细", &chcfg::Thickness, 1, 10, "%d");
 					ImGui::SliderInt("水平长度", &chcfg::hLength, 1, 100, "%d");
 					ImGui::SliderInt("垂直长度", &chcfg::vLength, 1, 100, "%d");
 					ImGui::SliderInt("间隔", &chcfg::Gap, 1, 50, "%d");
@@ -44,6 +41,7 @@ void Crosshair::Menu()
 				if (chcfg::Circle)
 				{
 					ImGui::SliderFloat("圆环半径", &chcfg::CircleRads, 0.f, 50.f, "%.1f");
+					ImGui::SliderFloat("圆环粗细", &chcfg::CircleThickness, 1.f, 10.f, "%.1f");
 				}
 
 				ImGui::Separator();
