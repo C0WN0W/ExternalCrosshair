@@ -25,7 +25,11 @@ void Crosshair::Menu()
 				ImGui::Checkbox("中心点", &chcfg::Dot);
 				if (chcfg::Dot)
 				{
-					ImGui::SliderFloat("中心点大小", &chcfg::DotSize, 1.f, 50.f, "%.f");
+					ImGui::Checkbox("圆点模式", &chcfg::DotB);
+					if (chcfg::DotB)
+						ImGui::SliderFloat("中心点半径", &chcfg::DotRads, 1.f, 20.f, "%.f");
+					else
+						ImGui::SliderFloat("中心点大小", &chcfg::DotSize, 1.f, 50.f, "%.f");
 				}
 				ImGui::Checkbox("十字线", &chcfg::Crossline);
 				if (chcfg::Crossline)

@@ -28,7 +28,12 @@ namespace Render
 		{
 			//dot
 			if (chcfg::Dot)
-				drawList->AddRectFilled(ImVec2(pos.x - offset1.x, pos.y - offset1.y), ImVec2(pos.x + offset2.x, pos.y + offset2.y), color & IM_COL32_A_MASK);
+			{	
+				if (chcfg::DotB)
+					drawList->AddCircleFilled(ImVec2(pos.x, pos.y), chcfg::DotRads + 1, color & IM_COL32_A_MASK);
+				else
+					drawList->AddRectFilled(ImVec2(pos.x - offset1.x, pos.y - offset1.y), ImVec2(pos.x + offset2.x, pos.y + offset2.y), color & IM_COL32_A_MASK);
+			}
 
 			if (chcfg::Crossline)
 			{
@@ -53,7 +58,13 @@ namespace Render
 		*/
 		// dot
 		if (chcfg::Dot)
-			drawList->AddRectFilled(ImVec2(pos.x - offset1.x + DotSize, pos.y - offset1.y + DotSize), ImVec2(pos.x + offset1.x, pos.y + offset1.y), color);
+		{
+			if (chcfg::DotB)
+				drawList->AddCircleFilled(ImVec2(pos.x, pos.y), chcfg::DotRads, chcfg::DefaultColor);
+			else
+				drawList->AddRectFilled(ImVec2(pos.x - offset1.x + DotSize, pos.y - offset1.y + DotSize), ImVec2(pos.x + offset1.x, pos.y + offset1.y), color);
+
+		}
 
 		// Crossline
 		if (chcfg::Crossline)
