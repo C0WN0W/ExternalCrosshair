@@ -67,7 +67,7 @@ void Crosshair::Run()
 {
 	// Show menu
 	static DWORD lastTick = 0;
-	DWORD currentTick = GetTickCount();
+	DWORD currentTick = GetTickCount64();
 	if ((GetAsyncKeyState(VK_DELETE) & 0x8000) && currentTick - lastTick >= 150) {
 		MenuConfig::showMenu = !MenuConfig::showMenu;
 		lastTick = currentTick;
