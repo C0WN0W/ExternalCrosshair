@@ -15,8 +15,13 @@ void Crosshair::Menu()
 		if (ImGui::BeginTabItem("准星设置"))
 		{
 			ImGui::Checkbox("启用", &chcfg::Show);
+			
 			if (chcfg::Show)
 			{
+				if (ImGui::Combo("预设", &chcfg::preset, "CSGO\0圆形准星\0士兵76\0"))
+					Render::UpdatePreset();
+				ImGui::Separator();
+
 				ImGui::Text("准星颜色");
 				ImGui::SameLine();
 				ImGui::ColorEdit4("##CrosshairColor", reinterpret_cast<float*>(&chcfg::DefaultColor), ImGuiColorEditFlags_NoInputs | ImGuiColorEditFlags_AlphaBar);

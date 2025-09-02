@@ -93,4 +93,45 @@ namespace Render
 			break;
 		}
 	}
+
+	void UpdatePreset()
+	{
+		switch (chcfg::preset) {
+		case 0:
+			chcfg::Outline = true;
+			chcfg::OutlineAlpha = 255;
+			chcfg::DotRads = 1;
+			chcfg::Crossline = true;
+			chcfg::Thickness = 1;
+			chcfg::hLength = 6;
+			chcfg::vLength = 6;
+			chcfg::Gap = 12;
+			chcfg::tStyle = false;
+			chcfg::Circle = false;
+			break;
+		case 1:
+			chcfg::Outline = true;
+			chcfg::OutlineAlpha = 255;
+			chcfg::Dot = true;
+			chcfg::DotRads = 2;
+			chcfg::Crossline = false;
+			chcfg::Circle = true;
+			chcfg::CircleRads = 12.f;
+			chcfg::CircleThickness = 1.6f;
+			break;
+		case 2:
+			chcfg::Outline = true;
+			chcfg::OutlineAlpha = 110;
+			chcfg::Dot = true;
+			chcfg::DotRads = 3;
+			chcfg::Crossline = true;
+			chcfg::Thickness = 2;
+			chcfg::hLength = 25;
+			chcfg::vLength = 25;
+			chcfg::Gap = 15;
+			chcfg::tStyle = false;
+			chcfg::Circle = false;
+			break;
+		}
+	}
 }

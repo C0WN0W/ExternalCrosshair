@@ -12,6 +12,7 @@ namespace chcfg
 	inline float Size = 75;
 
 	inline bool Show = false;
+	inline int preset = 0;
 	inline bool Dot = true;
 	inline bool Crossline = true;
 	inline bool tStyle = false;
