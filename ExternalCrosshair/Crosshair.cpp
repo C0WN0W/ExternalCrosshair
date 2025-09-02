@@ -19,9 +19,11 @@ void Crosshair::Menu()
 			{
 				ImGui::Text("准星颜色");
 				ImGui::SameLine();
-				ImGui::ColorEdit4("##CrosshairColor", reinterpret_cast<float*>(&chcfg::DefaultColor), ImGuiColorEditFlags_NoInputs);
+				ImGui::ColorEdit4("##CrosshairColor", reinterpret_cast<float*>(&chcfg::DefaultColor), ImGuiColorEditFlags_NoInputs | ImGuiColorEditFlags_AlphaBar);
 			
 				ImGui::Checkbox("轮廓", &chcfg::Outline);
+				if (chcfg::Outline)
+					ImGui::SliderInt("轮廓透明度", &chcfg::OutlineAlpha, 10, 255, "%d");
 				ImGui::Checkbox("中心点", &chcfg::Dot);
 				if (chcfg::Dot)
 				{

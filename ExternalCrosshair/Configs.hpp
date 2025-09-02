@@ -23,6 +23,7 @@ namespace chcfg
 	inline int hLength = 6;
 	inline int vLength = 6;
 	inline float DotRads = 1.f;
+	inline int OutlineAlpha = 255;
 	inline float CircleRads = 3.f;
 	inline float CircleThickness = 1.f;
 
